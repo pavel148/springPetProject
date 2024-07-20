@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Battle Member</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+
+<h1  class="my-4">Edit Battle Member</h1>
+<form th:action="@{/battle-members/{battle_members_id}(battle_members_id=${battleMembers.getBattle_members_id()})}" th:method="PATCH" th:object="${battleMembers}">
+
+
+    <label for="battle_name">Battle Name:</label>
+    <select id="battle_name" name="battle_name" th:field="*{battle_name}">
+        <option th:each="battle : ${battles}" th:value="${battle.battle_name}" th:text="${battle.battle_name}"></option>
+    </select><br>
+    <div style="color:red" th:if="${#fields.hasErrors('battle_name')}" th:errors="*{battle_name}">Battle name error</div>
+    <br>
+
+    <label for="ship_name">Ship Name:</label>
+    <select id="ship_name" name="ship_name" th:field="*{ship_name}">
+        <option th:each="ship : ${warships}" th:value="${ship.name}" th:text="${ship.name}"></option>
+    </select><br>
+    <div style="color:red" th:if="${#fields.hasErrors('ship_name')}" th:errors="*{ship_name}">Ship name error</div>
+    <br>
+
+    <label for="result">Result:</label>
+    <input type="text" id="result" name="result" th:field="*{result}" required><br>
+    <div style="color:red" th:if="${#fields.hasErrors('result')}" th:errors="*{result}">Result error</div>
+    <br>
+
+    <button type="submit">Save</button>
+</form>
+<a th:href="@{/battle-members}" class="btn btn-primary">Back to List</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/css/styleMain.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Main Page</h1>
+    <div class="navbar">
+        <a th:href="@{/warships}">Warships</a>
+        <a th:href="@{/countries}">Countries</a>
+        <a th:href="@{/battles}">Battles</a>
+        <a th:href="@{/battle-members}">Battle Members</a>
+    </div>
+</div>
+</body>
+</html>

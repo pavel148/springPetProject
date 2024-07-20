@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Battle</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+
+<h1  class="my-4">Edit Battle</h1>
+<form th:action="@{/battles/{battle_name}(battle_name=${battles.getBattle_name()})}" th:method="PATCH" th:object="${battles}">
+    <label for="battle_name">Name:</label>
+    <input type="text" id="battle_name" name="battle_name" th:field="*{battle_name}" required><br>
+    <div style="color:red" th:if="${#fields.hasErrors('battle_name')}" th:errors="*{battle_name}"> Battle name error</div>
+    <br/>
+
+    <label for="battle_date">Date:</label>
+    <input type="date" id="battle_date" name="battle_date" th:field="*{battle_date}" required><br>
+    <div style="color:red" th:if="${#fields.hasErrors('battle_date')}" th:errors="*{battle_date}"> Date error</div>
+    <br/>
+
+    <button type="submit">Save</button>
+</form>
+<a th:href="@{/battles}" class="btn btn-primary">Back to List</a>
+</div>
+</body>
+</html>

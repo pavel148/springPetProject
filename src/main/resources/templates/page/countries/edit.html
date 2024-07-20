@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Country</title>
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+<div class="container">
+
+<h1  class="my-4">Edit Country</h1>
+<form th:action="@{/countries/{name}(name=${countries.name})}" method="post" th:object="${countries}">
+    <input type="hidden" name="_method" value="patch"/>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required><br>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> Country name already exists</div>
+    <br/>
+
+    <label for="side">Side:</label>
+    <select id="side" name="side" th:field="*{side}">
+        <option value="Allies">Союзники</option>
+        <option value="Axis">Страны нацистского блока</option>
+        <option value="Neutral">Нейтралитет</option>
+    </select>
+    <br/><br/>
+
+    <button type="submit">Save</button>
+    <a th:href="@{/countries}" class="btn btn-primary">Back to List</a>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Country</title>
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+<div class="container">
+<h1  class="my-4">Country Details</h1>
+<p><strong>Name:</strong> <span th:text="${countries.name}"></span></p>
+<p><strong>Side:</strong> <span th:text="${countries.side}"></span></p>
+<a th:href="@{/countries}" class="btn btn-primary">Back to List</a>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Военные корабли</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+<h1 class="my-4">Warships</h1>
+<a href="/warships/new" class="btn btn-primary">Add New Warship</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Class</th>
+        <th>Commission Date</th>
+        <th>Decommission Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="warships : ${warships}">
+        <td th:text="${warships.name}">  </td>
+        <td th:text="${warships.class_warships}"></td>
+        <td th:text="${warships.commissionDate}"></td>
+        <td th:text="${warships.decommissionDate}"></td>
+        <td class="table-actions">
+            <a th:href="@{/warships/{name}(name=${warships.name})}" class="btn btn-info btn-sm">View</a>
+            <a th:href="@{/warships/{name}/edit(name=${warships.name})}" class="btn btn-warning btn-sm">Edit</a>
+            <form th:action="@{/warships/{name}(name=${warships.name})}" method="post" style="display:inline">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!--<div th:each="warship : ${warships}">-->
+<!--    <a th:href="@{/warships/{name}(name=${warship.name})}" th:text="${warship.name}">name</a>-->
+<!--</div>-->
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Battle Member</title>
+    <link rel="stylesheet" href="/css/styles.css">
+
+
+</head>
+<body>
+
+<div class="container">
+    <h1 class="my-4">Battle Member Details</h1>
+    <p><strong>Battle Name:</strong> <span th:text="${battleMembers.battle_name}"></span></p>
+    <p><strong>Ship Name:</strong> <span th:text="${battleMembers.ship_name}"></span></p>
+    <p><strong>Result:</strong> <span th:text="${battleMembers.result}"></span></p>
+    <a th:href="@{/battle-members}" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+
+</body>
+</html>
