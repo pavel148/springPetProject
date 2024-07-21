@@ -30,8 +30,13 @@ public class WarshipsValidator implements Validator {
         LocalDate commissionDate = warships.getCommissionDate();
         LocalDate decommissionDate = warships.getDecommissionDate();
 
-        if (commissionDate != null && decommissionDate != null && commissionDate.isAfter(decommissionDate)) {
-            errors.rejectValue("commissionDate", "", "Дата ввода в эксплуатацию не может быть позже даты вывода из эксплуатации.");
+        if (commissionDate != null && decommissionDate != null) {
+            if (commissionDate.isAfter(decommissionDate)) {
+                errors.rejectValue("commissionDate", "", "Дата ввода в эксплуатацию не может быть позже даты вывода из эксплуатации.");
+            }
+            if (commissionDate.isEqual(decommissionDate)) {
+                errors.rejectValue("commissionDate", "", "Дата ввода в эксплуатацию и дата вывода из эксплуатации не могут быть в один и тот же день.");
+            }
         }
 
         if (warshipsDAO.getWarshipsByName(warships.getName()).isPresent())

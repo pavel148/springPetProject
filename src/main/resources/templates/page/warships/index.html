@@ -8,8 +8,8 @@
 <body>
 <div class="container">
 <h1 class="my-4">Warships</h1>
-<a href="/warships/new" class="btn btn-primary">Add New Warship</a>
 
+    <a th:href="@{/}" class="btn btn-primary">Главная</a>
 <table class="table">
     <thead>
     <tr>
@@ -37,6 +37,7 @@
     </tr>
     </tbody>
 </table>
+    <a href="/warships/new" class="btn btn-primary">Add New Warship</a>
 <!--<div th:each="warship : ${warships}">-->
 <!--    <a th:href="@{/warships/{name}(name=${warship.name})}" th:text="${warship.name}">name</a>-->
 <!--</div>-->
