@@ -1,5 +1,7 @@
 package com.korobkin.test.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -15,14 +17,12 @@ public class Warships {
         this.commissionDate = commissionDate;
         this.decommissionDate = decommissionDate;
     }
-
     private String name;
-
     private String class_warships;
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate commissionDate;
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate decommissionDate;
-
-
 
     public String getName() {
         return name;
@@ -31,7 +31,6 @@ public class Warships {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getClass_warships() {
         return class_warships;

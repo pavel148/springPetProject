@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -46,6 +47,11 @@ public class BattleMembersDAO implements GenericDAO<BattleMembers, Integer>{
     @Override
     public void delete(Integer id) {
         jdbcTemplate.update("DELETE FROM BATTLE_MEMBERS WHERE BATTLE_MEMBERS_ID=?", id);
+    }
+
+    public BattleMembers checkUniqueShip_nameInBattle(String battle_name, String ship_name) {
+            return jdbcTemplate.query("SELECT * FROM BATTLE_MEMBERS WHERE BATTLE_NAME = ? AND SHIP_NAME = ?", new Object[]{battle_name, ship_name}, new BeanPropertyRowMapper<>(BattleMembers.class))
+                .stream().findAny().orElse(null);
     }
 
 

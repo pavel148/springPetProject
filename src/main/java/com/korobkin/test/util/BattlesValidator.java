@@ -7,6 +7,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Objects;
+
 @Component
 public class BattlesValidator implements Validator {
 
@@ -15,7 +20,6 @@ public class BattlesValidator implements Validator {
     @Autowired
     public BattlesValidator(BattlesDAO battlesDAO) {
         this.battlesDAO = battlesDAO;
-
     }
 
 
@@ -27,8 +31,18 @@ public class BattlesValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Battles battles=(Battles) target;
-
         if (battlesDAO.getBattlesByName(battles.getBattle_name()).isPresent())
             errors.rejectValue("battle_name", "", "Такое сражение уже существует");
+
     }
+
+    public void validate(Object target, Errors errors, String pathBattle_name) {
+        Battles battles=(Battles) target;
+        if (!Objects.equals(battles.getBattle_name(), pathBattle_name) && battlesDAO.getBattlesByName(battles.getBattle_name()).isPresent()) {
+            errors.rejectValue("battle_name", "", "Такое сражение уже существует");
+        }
+    }
+
+
+
 }

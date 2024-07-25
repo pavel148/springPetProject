@@ -9,35 +9,35 @@
 <body>
 <div class="container">
 
-<h1  class="my-4">Battle Members</h1>
+    <h1  class="my-4">Battle Members</h1>
     <a th:href="@{/}" class="btn btn-primary">Главная</a>
 
     <table class="table">
-    <thead>
-    <tr>
-        <th>Battle Name</th>
-        <th>Ship Name</th>
-        <th>Result</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="battleMember : ${battleMembers}">
-        <td th:text="${battleMember.battle_name}">Battle Name</td>
-        <td th:text="${battleMember.ship_name}">Ship Name</td>
-        <td th:text="${battleMember.result}">Result</td>
-        <td class="table-actions">
-            <a th:href="@{/battle-members/{id}(id=${battleMember.battle_members_id})}" class="btn btn-info btn-sm">View</a>
-            <a th:href="@{/battle-members/{id}/edit(id=${battleMember.battle_members_id})}" class="btn btn-warning btn-sm">Edit</a>
-            <form th:action="@{/battle-members/{id}(id=${battleMember.battle_members_id})}" method="post" style="display:inline;">
-                <input type="hidden" name="_method" value="delete"/>
-                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<a th:href="@{/battle-members/new}" class="btn btn-primary">Add New Battle Member</a>
+        <thead>
+        <tr>
+            <th>Battle Name</th>
+            <th>Ship Name</th>
+            <th>Result</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="battleMember : ${battleMembers}">
+            <td th:text="${battleMember.battle_name}">Battle Name</td>
+            <td th:text="${battleMember.ship_name}">Ship Name</td>
+            <td th:text="${battleMember.result}">Result</td>
+            <td class="table-actions">
+                <a th:href="@{/battle-members/{id}(id=${battleMember.battle_members_id})}" class="btn btn-info btn-sm">View</a>
+                <a th:href="@{/battle-members/{id}/edit(id=${battleMember.battle_members_id})}" class="btn btn-warning btn-sm">Edit</a>
+                <form th:action="@{/battle-members/{id}(id=${battleMember.battle_members_id})}" method="post" style="display:inline;">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/battle-members/new}" class="btn btn-primary">Add New Battle Member</a>
 </div>
 </body>
 </html>

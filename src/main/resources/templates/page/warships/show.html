@@ -9,8 +9,8 @@
 <h1>Warship Details</h1>
 <p><strong>Name:</strong> <span th:text="${warships.name}"></span></p>
 <p><strong>Class:</strong> <span th:text="${warships.class_warships}"></span></p>
-<p><strong>Commission Date:</strong> <span th:text="${warships.commissionDate}"></span></p>
-<p><strong>Decommission Date:</strong> <span th:text="${warships.decommissionDate}"></span></p>
+<p><strong>Commission Date:</strong> <span th:text="${#temporals.format(warships.commissionDate, 'dd.MM.yyyy')}"></span></p>
+<p><strong>Decommission Date:</strong> <span th:text="${#temporals.format(warships.decommissionDate, 'dd.MM.yyyy')}"></span></p>
 
 <form th:action="@{/warships/{name}/edit(name=${warships.getName()})}"  th:method="GET"  style="display:inline">
     <input type="submit" value="Редактировать"/>

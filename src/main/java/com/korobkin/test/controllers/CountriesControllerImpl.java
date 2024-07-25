@@ -65,6 +65,7 @@ public class CountriesControllerImpl implements CountriesController {
 
     @Override
     public String update(@ModelAttribute("countries") @Valid Countries country, BindingResult result, @PathVariable("name") String name) {
+        countriesValidator.validate(country, result, name);
         if (result.hasErrors())
             return "page/countries/edit";
 

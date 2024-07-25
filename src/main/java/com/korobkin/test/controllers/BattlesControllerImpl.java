@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
@@ -55,18 +54,23 @@ public class BattlesControllerImpl implements BattlesController {
 
     @Override
     public String edit(Model model, @PathVariable("battle_name") String battle_name) {
+        Battles battle = battlesDAO.show(battle_name);
         model.addAttribute("battles", battlesDAO.show(battle_name));
+        model.addAttribute("originalBattleName", battle_name);
         return "page/battles/edit";
     }
 
     @Override
-    public String update(@ModelAttribute("battles") @Valid Battles battle, BindingResult result, @PathVariable("battle_name") String battle_name) {
+    public String update(@ModelAttribute("battles") @Valid Battles battle, BindingResult result,@PathVariable("battle_name") String battle_name) {
+        battlesValidator.validate(battle, result, battle_name);
         if (result.hasErrors())
             return "page/battles/edit";
 
         battlesDAO.update(battle_name, battle);
         return "redirect:/battles";
     }
+
+
 
     @Override
     public String delete(@PathVariable("battle_name") String battle_name) {

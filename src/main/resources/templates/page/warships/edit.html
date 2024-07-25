@@ -4,37 +4,34 @@
     <meta charset="UTF-8">
     <title>Edit Warship</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/dateFormatter.js" defer></script>
 </head>
 <body>
 <div class="container">
-<h1  class="my-4">Edit Warship</h1>
-<form th:method="PATCH" th:action="@{/warships/{name}(name=${warships.name})}" th:object="${warships}">
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" th:field="*{name} " required><br>
-     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> Name Error</div>
-     <br/>
-     <label for="class_warships">Class:</label>
-     <input type="text" id="class_warships" name="class_warships" th:field="*{class_warships}" required><br>
-    </div>
+    <h1 class="my-4">Edit Warship</h1>
+    <form th:method="patch" th:action="@{/warships/{name}(name=${warships.name})}" th:object="${warships}">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" th:field="*{name}" required><br>
+            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> Name Error</div>
+            <br/>
+            <label for="class_warships">Class:</label>
+            <input type="text" id="class_warships" name="class_warships" th:field="*{class_warships}" required><br>
+        </div>
 
-    <br/>
-    <label for="commissionDate">Commission Date:</label>
-    <input type="date" id="commissionDate" name="commissionDate" th:field="*{commissionDate}"><br>
-    <div style="color:red" th:if="${#fields.hasErrors('commissionDate')}" th:errors="*{commissionDate}"> Commission Date Error</div>
+        <br/>
+        <label for="commissionDate">Commission Date:</label>
+        <input type="date" data-date="" id="commissionDate" name="commissionDate" data-date-format="DD MMMM YYYY" th:value="${warships.commissionDate}">
+        <div style="color:red" th:if="${#fields.hasErrors('commissionDate')}" th:errors="*{commissionDate}"> Commission Date Error</div>
+        <br/>
 
-    <label for="decommissionDate">Decommission Date:</label>
-    <input type="date" id="decommissionDate" name="decommissionDate" th:field="*{decommissionDate}"><br>
-    <div style="color:red" th:if="${#fields.hasErrors('decommissionDate')}" th:errors="*{decommissionDate}"> Decommission Date Error</div>
+        <label for="decommissionDate">Decommission Date:</label>
+        <input type="date" data-date="" id="decommissionDate" name="decommissionDate" data-date-format="DD MMMM YYYY" th:value="${warships.decommissionDate}">
+        <div style="color:red" th:if="${#fields.hasErrors('decommissionDate')}" th:errors="*{decommissionDate}"> Decommission Date Error</div>
 
-    <button type="submit">Save</button>
-    <a href="/warships" class="btn btn-primary">Back to list</a>
-</form>
+        <button type="submit">Save</button>
+        <a href="/warships" class="btn btn-primary">Back to list</a>
+    </form>
 </div>
-
-
-
-
-
 </body>
 </html>

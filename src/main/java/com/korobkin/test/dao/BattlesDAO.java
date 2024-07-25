@@ -57,4 +57,6 @@ public class BattlesDAO implements GenericDAO<Battles, String> {
     public LocalDate getBattleDateByName(String battle_name) {
         return jdbcTemplate.queryForObject("SELECT BATTLE_DATE FROM BATTLES WHERE BATTLE_NAME=?", new Object[]{battle_name}, LocalDate.class);
     }
+
+
 }

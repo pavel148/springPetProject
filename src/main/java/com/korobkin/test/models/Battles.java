@@ -1,6 +1,9 @@
 package com.korobkin.test.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -20,7 +23,9 @@ public class Battles {
     @Size(min=2, max=50, message = "Название сражение должно быть от 2 до 100 символов длиной")
     private String battle_name;
     @NotEmpty(message = "Дата не должна быть пустой")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate battle_date;
+
 
     public String getBattle_name() {
         return battle_name;

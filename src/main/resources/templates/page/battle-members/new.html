@@ -4,35 +4,37 @@
     <meta charset="UTF-8">
     <title>New Battle Member</title>
     <link rel="stylesheet" href="/css/styles.css">
-
 </head>
 <body>
 <div class="container">
+    <h1 class="my-4">New Battle Member</h1>
+    <form th:action="@{/battle-members}" th:method="POST" th:object="${battleMembers}">
+        <label for="battle_name">Battle Name:</label>
+        <select id="battle_name" name="battle_name" th:field="*{battle_name}">
+            <option th:each="battle : ${battles}" th:value="${battle.battle_name}" th:text="${battle.battle_name}"></option>
+        </select><br>
+        <div style="color:red" th:if="${#fields.hasErrors('battle_name')}" th:errors="*{battle_name}">Battle name error</div>
+        <br>
 
-<h1  class="my-4">New Battle Member</h1>
-<form th:action="@{/battle-members}" th:method="POST" th:object="${battleMembers}">
-    <label for="battle_name">Battle Name:</label>
-    <select id="battle_name" name="battle_name" th:field="*{battle_name}">
-        <option th:each="battle : ${battles}" th:value="${battle.battle_name}" th:text="${battle.battle_name}"></option>
-    </select><br>
-    <div style="color:red" th:if="${#fields.hasErrors('battle_name')}" th:errors="*{battle_name}">Battle name error</div>
-    <br>
+        <label for="ship_name">Ship Name:</label>
+        <select id="ship_name" name="ship_name" th:field="*{ship_name}">
+            <option th:each="ship : ${warships}" th:value="${ship.name}" th:text="${ship.name}"></option>
+        </select><br>
+        <div style="color:red" th:if="${#fields.hasErrors('ship_name')}" th:errors="*{ship_name}">Ship name error</div>
+        <br>
 
-    <label for="ship_name">Ship Name:</label>
-    <select id="ship_name" name="ship_name" th:field="*{ship_name}">
-        <option th:each="ship : ${warships}" th:value="${ship.name}" th:text="${ship.name}"></option>
-    </select><br>
-    <div style="color:red" th:if="${#fields.hasErrors('ship_name')}" th:errors="*{ship_name}">Ship name error</div>
-    <br>
+        <label for="result">Result:</label>
+        <select id="result" name="result" th:field="*{result}" required>
+            <option value="затонувший" th:selected="${battleMembers.result == 'затонувший'}">затонувший</option>
+            <option value="поврежденный" th:selected="${battleMembers.result == 'поврежденный'}">поврежденный</option>
+            <option value="выжил" th:selected="${battleMembers.result == 'выжил'}">выжил</option>
+        </select><br>
+        <div style="color:red" th:if="${#fields.hasErrors('result')}" th:errors="*{result}">Result error</div>
+        <br>
 
-    <label for="result">Result:</label>
-    <input type="text" id="result" name="result" th:field="*{result}" required><br>
-    <div style="color:red" th:if="${#fields.hasErrors('result')}" th:errors="*{result}">Result error</div>
-    <br>
-
-    <button type="submit">Save</button>
-</form>
-<a th:href="@{/battle-members}">Back to List</a>
+        <button type="submit">Save</button>
+    </form>
+    <a th:href="@{/battle-members}" class="btn btn-primary">Back to List</a>
 </div>
 </body>
 </html>

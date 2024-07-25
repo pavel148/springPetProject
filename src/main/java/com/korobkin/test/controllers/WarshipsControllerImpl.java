@@ -47,7 +47,7 @@ public class WarshipsControllerImpl implements WarshipsController {
 
     @Override
     @GetMapping("/new")
-    public String newWarship(@ModelAttribute("warships") Warships warships) {
+    public String newWarship(@ModelAttribute("warships")  Warships warships) {
         return "page/warships/new";
     }
 
@@ -71,7 +71,7 @@ public class WarshipsControllerImpl implements WarshipsController {
 
     @Override
     public String update(@ModelAttribute("warships") @Valid Warships warship, BindingResult result, @PathVariable("name")  String name) {
-        warshipsValidator.validate(warship, result);
+        warshipsValidator.validate(warship, result, name);
         if (result.hasErrors())
             return "page/warships/edit";
 

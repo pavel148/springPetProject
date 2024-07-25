@@ -16,7 +16,7 @@
     <br/>
 
     <label for="battle_date">Date:</label>
-    <input type="date" id="battle_date" name="battle_date" th:field="*{battle_date}" required><br>
+    <input type="date" data-date="" id="battle_date" name="battle_date" th:value="${battles.battle_date}" data-date-format="DD MMMM YYYY"><br>
     <div style="color:red" th:if="${#fields.hasErrors('battle_date')}" th:errors="*{battle_date}"> Date error</div>
     <br/>
 

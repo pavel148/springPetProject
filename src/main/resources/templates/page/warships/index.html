@@ -24,8 +24,8 @@
     <tr th:each="warships : ${warships}">
         <td th:text="${warships.name}">  </td>
         <td th:text="${warships.class_warships}"></td>
-        <td th:text="${warships.commissionDate}"></td>
-        <td th:text="${warships.decommissionDate}"></td>
+        <td th:text="${#temporals.format(warships.commissionDate, 'dd.MM.yyyy')}"></td>
+        <td th:text="${#temporals.format(warships.decommissionDate, 'dd.MM.yyyy')}"></td>
         <td class="table-actions">
             <a th:href="@{/warships/{name}(name=${warships.name})}" class="btn btn-info btn-sm">View</a>
             <a th:href="@{/warships/{name}/edit(name=${warships.name})}" class="btn btn-warning btn-sm">Edit</a>

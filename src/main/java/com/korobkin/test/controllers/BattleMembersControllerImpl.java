@@ -5,6 +5,8 @@ import com.korobkin.test.dao.BattleMembersDAO;
 import com.korobkin.test.dao.BattlesDAO;
 import com.korobkin.test.dao.WarshipsDAO;
 import com.korobkin.test.models.BattleMembers;
+import com.korobkin.test.models.Battles;
+import com.korobkin.test.models.Warships;
 import com.korobkin.test.util.BattleMembersValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class BattleMembersControllerImpl implements BattleMembersController {
@@ -98,5 +102,6 @@ public class BattleMembersControllerImpl implements BattleMembersController {
         battleMembersDAO.delete(id);
         return "redirect:/battle-members";
     }
+
 
 }
