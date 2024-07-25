@@ -13,8 +13,19 @@
         <input type="text" id="name" name="name" th:field="*{name}" required><br>
         <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> Name Error</div>
         <br/>
+
         <label for="class_warships">Class:</label>
-        <input type="text" id="class_warships" name="class_warships" th:field="*{class_warships}"  required><br>
+        <select id="class_warships" name="class_warships" th:field="*{class_warships}" required>
+            <option value="" disabled selected>Select class</option>
+            <option value="линкор">Линкор</option>
+            <option value="авианосец">Авианосец</option>
+            <option value="крейсер">Крейсер</option>
+            <option value="эсминец">Эсминец</option>
+            <option value="подводная лодка">Подводная лодка</option>
+            <option value="торговое судно">Торговое судно</option>
+        </select><br>
+        <div style="color:red" th:if="${#fields.hasErrors('class_warships')}" th:errors="*{class_warships}"> Class Error</div>
+        <br/>
 
         <label for="commissionDate">Commission Date:</label>
         <input type="date" id="commissionDate" name="commissionDate"><br>
